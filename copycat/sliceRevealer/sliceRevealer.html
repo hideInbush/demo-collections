@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Slice Revealer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+</head>
+<style>
+    html,body{
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container,
+    .slides,
+    .content{
+        height: 100%;
+    }
+
+    .slides{
+        width: 100%;
+        position: absolute;
+        top: 0;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .slide{
+        flex: 1;
+    }
+    .slide:nth-child(1){
+        background-color: black;
+        animation: revealer 0.5s 0.2s cubic-bezier(0.77, 0, 0.175, 1);
+        animation-fill-mode: both;  
+    }
+    .slide:nth-child(2){
+        background-color: black;
+        animation: revealer 0.5s 0.3s cubic-bezier(0.77, 0, 0.175, 1);
+        animation-fill-mode: both;  
+    }
+    .slide:nth-child(3){
+        background-color: black;
+        animation: revealer 0.5s 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+        animation-fill-mode: both;  
+    }
+    .slide:nth-child(4){
+        background-color: black;
+        animation: revealer 0.5s 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+        animation-fill-mode: both;  
+    }
+
+    @keyframes revealer {
+        0% { transform: translateY(0) }
+        100% { transform: translateY(-100%) }
+    }
+
+    .content{
+        overflow: hidden;
+    }
+    .cover{
+        height: 100%;
+        background-size: cover;
+        transform: scale(1.1);
+        animation: scale 0.8s 0.4s ease-in-out;
+        animation-fill-mode: both;  
+    }
+    @keyframes scale {
+        0% { transform: scale(1.1) }
+        100% { transform: scale(1) }
+    }
+</style>
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="cover" style="background-image:url(./1.jpg)"></div>
+        </div>
+        <div class="slides">
+            <div class="slide"></div>
+            <div class="slide"></div>
+            <div class="slide"></div>
+            <div class="slide"></div>
+        </div>
+    </div>
+</body>
+</html>
+
+
