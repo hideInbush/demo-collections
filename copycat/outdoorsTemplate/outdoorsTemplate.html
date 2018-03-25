@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Outdoors Template</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700" rel="stylesheet">
+</head>
+<style>
+    html,body{
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        font-family: "Montserrat", sans-serif;
+    }
+    h1,h2,h3,h4,h5,p{
+        margin: 0;
+    }
+
+    .container{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .container-left{
+        flex: 1;
+    }
+    .container-left header{
+        padding: 32px 48px 0 32px;
+    }
+    .container-left header h1{
+        font-size: 22px;
+        margin: 0;
+    }
+
+    .sections{
+        display:flex;
+        height:calc(100% - 62px);
+        flex-direction:column;
+    }
+    .sections>div{
+        flex: 1;
+    }
+    .sections .section_index{
+        overflow: hidden;
+        font-size: 14px;
+        font-weight: bold;
+        position: relative;
+    }
+    .sections .section_index .section_index-current{
+        display: inline-block;
+        float: left;
+        width: 20px;
+    }
+    .sections .section_index .line{
+        display: inline-block;
+        width: 95px;
+        height: 3px;
+        background-color: #333;
+        float: left;
+        margin: 8px 15px 0 15px;
+    }
+    .sections .section_index .section_index-total{
+        display: inline-block;
+        float: left;
+    }
+    .sections .section_content{
+        padding: 30px 60px 0 60px;
+    }
+    .sections .section_content h1{
+        font-size: 10vh;
+    }
+    .sections .section_content p{
+        line-height: 1.75;
+        font-weight: 300;
+        width: 308px;
+        margin-top: 20px;
+    }
+    .sections .section_btn{
+        padding: 0 60px;
+        position: relative;
+    }
+    .sections .section_btn .arrow{
+        position: absolute;
+        border-radius:50%;
+        width:44px;
+        height:44px;
+        border:2px solid #ddd;
+        cursor: pointer;
+        top: 25%;
+    }
+    .sections .section_btn .arrow:nth-child(1){
+        left: 60px;
+    }
+    .sections .section_btn .arrow:nth-child(2){
+        left: 113px;
+    }
+    .sections .section_btn .arrow:hover{
+        border-color: #333;
+    }
+
+    .container-right{
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+    .container-right .img{
+        width: 100%;
+        flex: 1;
+        transition: transform .3s;
+    }
+    .container-right .img>div{
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+    .container-right .img>div>div{
+        height: 100%;
+        background-position: 50% 50%;
+        background-size: cover;
+        transform: scale(1.1);
+    }
+    .container-right .tip{
+        width: 100%;
+        height: 200px;
+        background-color: #FDE8B4;
+        display: flex;
+        flex-direction: column;
+        z-index: 9;
+    }
+    .container-right .tip>div{
+        flex: 1;
+        position: relative;
+        margin: auto;
+        width: 100%;
+    }
+    .container-right .tip>div:nth-child(1) span{
+        position: absolute;
+        bottom: 10px;
+        display: block;
+        left: 50%;
+        transform: translateX(-50%);
+        font-weight: bold;
+    }
+
+    .container-right .tip .btn-more>div{
+        overflow:hidden;
+        position:absolute;
+        display:inline-block;
+        top:10px;
+        left:50%;
+        transform:translateX(-50%);
+        cursor:pointer;
+    }
+    .container-right .tip .btn-more>div>span{
+        font-weight: 300;
+    }
+    .container-right .tip .btn-more>div>div{
+        display:inline-block;
+        width:32px;
+        margin-left:5px;
+    }
+
+
+    .fadeOut{
+        animation: fadeOut 0.5s cubic-bezier(0.77, 0, 0.175, 1) both;
+    }
+    @keyframes fadeOut{
+        0% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        100% {
+            opacity: 0;
+            transform: translateY(100%);
+        }
+    }
+
+    .fadeIn{
+        animation: fadeIn 0.5s both;
+    }
+    @keyframes fadeIn{
+        0% {
+            opacity: 0;
+            transform: translateY(-100%);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .fadeInWithScale{
+        animation: fadeInWithScale 0.3s both;
+    }
+    @keyframes fadeInWithScale{
+        0% {
+            transform: scale(1.1);
+        }
+        100% {
+            transform: scale(1);
+
+        }
+    }
+</style>
+<body>
+    <div class="container">
+        <div class="container-left">
+            <header>
+                <h1>outdoors</h1>
+            </header>
+            <div class="sections">
+                <div class="section_index">
+                    <div style="bottom:40px;position:absolute;left:100px;overflow:hidden;">
+                        <span class="section_index-current" data-max="4">01</span>
+                        <span class="line"></span>
+                        <span class="section_index-total">04</span>
+                    </div>
+                </div> 
+                <div class="section_content">
+                    <h1>hiking</h1>
+                    <p>
+                        Hiking is the preferred term, in Canada and the United States, for a long, vigorous walk, usually on trails (footpaths), in the countryside, while the word walking is used for shorter, particularly urban walks.
+                    </p>
+                </div>
+                <div class="section_btn">
+                    <div class="arrow" data-arrow="up">
+                        <svg id="icon-navup" viewBox="0 0 50 50" width="100%" height="100%">
+                            <title>navup</title>
+                            <path d="M20.259 28.211l5.07-5.03 5.075 5.034a.36.36 0 0 0 .51 0 .356.356 0 0 0 0-.506l-5.323-5.28a.404.404 0 0 0-.135-.084.364.364 0 0 0-.384.08l-5.324 5.28a.356.356 0 0 0 0 .506c.141.14.37.14.51 0z"></path>
+                        </svg>
+                    </div>
+                    <div class="arrow" data-arrow="down">
+                        <svg id="icon-navdown" viewBox="0 0 50 50" width="100%" height="100%">
+                            <title>navdown</title>
+                            <path d="M20.259 22.43l5.07 5.03 5.075-5.034a.36.36 0 0 1 .51 0c.14.14.14.366 0 .506l-5.323 5.28a.404.404 0 0 1-.135.084.364.364 0 0 1-.384-.081l-5.324-5.28a.356.356 0 0 1 0-.505c.141-.14.37-.14.51 0z"></path>
+                        </svg>
+                    </div>                    
+                </div>
+            </div>
+             
+        </div>
+        <div class="container-right">
+            <div class="img">
+                <div>
+                    <div style="background-image:url(./1.jpg)"></div>
+                </div>
+                <div>
+                    <div style="background-image:url(./2.jpg)"></div>
+                </div>
+                <div>
+                    <div style="background-image:url(./3.jpg)"></div>
+                </div>
+                <div>
+                    <div style="background-image:url(./4.jpg)"></div>
+                </div>
+            </div>
+            <div class="tip">
+                <div>
+                    <span>Want to know more?</span>
+                </div>
+                <div class="btn-more">
+                    <div>
+                        <span>Explore all </span>
+                        <div>
+                            <svg id="icon-arrowlong" viewBox="0 0 32 11" width="100%" height="100%">
+                                <title>arrow-long</title>
+                                <path d="M27.166.183a.619.619 0 0 0-.878 0 .619.619 0 0 0 0 .878l2.735 2.735H.768a.624.624 0 0 0 0 1.248h28.254L26.287 7.77a.619.619 0 0 0 0 .878.617.617 0 0 0 .441.183c.163 0 .32-.061.442-.183l3.796-3.796a.623.623 0 0 0-.005-.878L27.166.183z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    (function(){
+        document.querySelector('.arrow').addEventListener('click', function(e){
+            var element = this;
+            var sectionIndex = document.querySelector('.section_index-current');
+            var pics = document.querySelector('.container-right').querySelector('.img');
+            if(element.getAttribute('data-arrow') == 'up'){
+                $(sectionIndex).removeClass('fadeIn');
+                $(sectionIndex).addClass('fadeOut');
+
+                var currentId = parseInt(sectionIndex.innerText);
+                var nextId = parseInt(sectionIndex.innerText) == parseInt(sectionIndex.getAttribute('data-max')) 
+                            ?
+                            '01' : '0' + (parseInt(sectionIndex.innerText)+1);
+                window.setTimeout(() => {
+                    var translateY = (parseInt(nextId)-1) * 100;
+                    pics.style.transform = 'translateY(-'+translateY+'%)';
+
+                    // $(pics.children[parseInt(currentId)-1].children[0]).removeClass('fadeInWithScale');
+                    // $(pics.children[parseInt(nextId)-1].children[0]).addClass('fadeInWithScale');
+                }, 200);
+
+                window.setTimeout(() => {
+                    sectionIndex.innerText = nextId;
+                        
+                    $(sectionIndex).removeClass('fadeOut');
+                    $(sectionIndex).addClass('fadeIn');
+                }, 500);
+            }else if(element.getAttribute('data-arrow') == 'down'){
+
+            }
+        })
+    })();
+</script>
+</html>
+
+
