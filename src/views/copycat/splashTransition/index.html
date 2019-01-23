@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Splash Transition</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+    }
+    
+    body {
+      font-family: sans-serif;
+      overflow: hidden;
+    }
+    
+    /* Background image */
+    .background-image {
+      width: 100%;
+      height: 100%;
+      background-image: url("1.jpg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      transform: scale(1.5);
+    }
+    
+    /* SVG */
+    svg {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    
+    .svg-center {
+      border-radius: 100%;
+    }
+    
+    path {
+      fill: none;
+      stroke: black;
+    }
+    
+    path.path-center {
+      stroke-width: 200px;
+    }
+    
+    /* Transitions */
+    .background-image,
+    .path-center,
+    .svg-borders {
+      transition: 2s cubic-bezier(0.77, 0, 0.175, 1); /* easeInOutQuart */
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="background-image"></div>
+  <button>Animate</button>
+  <svg class="svg-center" width="200" height="200">
+    <path class="path-center" d="M 100 100 m -100 0 a 100 100 0 1 0 200 0 a 100 100 0 1 0 -200 0" />
+  </svg>
+  <svg class="svg-borders" width="10000" height="5000">
+  </svg>
+</body>
+
+<script>
+(function() {
+  const strokeWidth = 200; // 圆圈半径
+  const circleCnt = 10; // 圆圈个数
+
+  var head = document.head || document.getElementsByTagName('head')[0];
+  var style = document.createElement('style');
+  style.type = 'text/css';
+  style.innerHTML = `.svg-borders path { stroke-width: ${strokeWidth + 1}px }`;
+  head.appendChild(style);
+
+  let pathStr = '';
+  const defaultR = 200;
+  for (var i = 0; i < circleCnt; i ++) {
+    const r = defaultR + i * strokeWidth;
+    pathStr += `<path class="path-borders" d="M 5000 2500 m -${r} 0 a ${r} ${r} 0 1 0 ${2 * r} 0 a ${r} ${r} 0 1 0 ${-2 * r} 0" />`;
+  }
+  document.querySelector('.svg-borders').innerHTML = pathStr;
+    
+  const borders = document.querySelectorAll('.path-borders');
+
+  for (var i = 0; i < borders.length; i += 1) {
+    const pathLength = Math.ceil(borders[i].getTotalLength());
+    borders[i].setAttribute('style', `stroke-dashoffset:${10000};stroke-dasharray:${10000} 0 ${pathLength};`);
+  }
+
+  setTimeout(() => {
+    for (var i = 0; i < borders.length; i += 1) {
+      const pathLength = Math.ceil(borders[i].getTotalLength());
+      if (i % 2 === 0) {
+        borders[i].setAttribute('style', `stroke-dashoffset:${10000};stroke-dasharray:${10000} ${pathLength} ${pathLength};transition: 2s cubic-bezier(0.77, 0, 0.175, 1);`);
+      } else {
+        borders[i].setAttribute('style', `stroke-dashoffset:${10000};stroke-dasharray:${10000} 0 0;transition: 2s cubic-bezier(0.77, 0, 0.175, 1);`);
+      }
+    }
+    document.querySelector('.background-image').setAttribute('style', 'transform:scale(1)');
+    document.querySelector('.svg-borders').setAttribute('style', 'transform: translate(-50%, -50%) rotate(90deg);');
+    document.querySelector('.path-center').setAttribute('style', 'stroke-width:0;');
+  }, 500)
+
+})();
+</script>
+
+</html>
