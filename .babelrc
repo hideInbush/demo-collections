@@ -6,6 +6,16 @@
     ],
     "plugins": [
         "transform-decorators-legacy",
-        "transform-react-jsx"
+        "transform-react-jsx",
+        "syntax-dynamic-import",
+        [
+            "transform-runtime",
+            {
+                "helpers": false,
+                "polyfill": false,
+                "regenerator": true,
+                "moduleName": "babel-runtime"
+            }
+        ]
     ]
 }
