@@ -3,6 +3,7 @@ const path = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const LocalWebpackPlugin = require('./plugins/localWebpackPlugin/index.js');
 
 const HappyPack = require('happypack');
 const happyThreadPool = HappyPack.ThreadPool({ size: 5 });
@@ -20,7 +21,6 @@ console.log(`env is ${isProudction}`);
 
 const pathsToClean = [
   'build/*.*',
-  'build/routers',
   'build/assets',
 ];
 const cleanOptions = {
@@ -121,6 +121,12 @@ module.exports = {
       title: 'Landing Page',
       filename: 'index.html',
       minify: false,
+    }),
+    new LocalWebpackPlugin({
+      paths: isProudction ?
+        ['dll/react.dll.js']
+        :
+        [],
     }),
   ],
 };

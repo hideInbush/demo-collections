@@ -7,7 +7,7 @@ const NamedModulesPlugin = require('webpack/lib/NamedModulesPlugin');
 module.exports = merge(common, {
   devtool: 'inline-source-map',
   devServer: {
-    contentBase: __dirname,
+    contentBase: path.resolve(__dirname, '../public'),
     host: 'localhost',
     inline: true,
     port: 9999,
